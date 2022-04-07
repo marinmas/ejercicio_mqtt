@@ -16,7 +16,11 @@ def main(broker, topic):
     mqttc.on_message = on_message
     mqttc.connect(broker)
     mqttc.subscribe(topic)
-    mqttc.loop_forever()
+    mqttc.loop_start()
+   
+    for i in range(3):
+        msg="Esto es una prueba"
+        mqttc.publish('clients/prueba',msg)
 
 if __name__ == "__main__":
     import sys
